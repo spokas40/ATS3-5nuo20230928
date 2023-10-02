@@ -10,6 +10,8 @@ import carriageImage from '../images/carriage.png';
 import ballonImage from '../images/ballon.png';
 import { calculateNewPosition } from './CardMover.js';
 
+console.log("Gauta kauliuko reikšmė: ")
+
 const GameBoard = (props) => {
     const selectedCard = localStorage.getItem('selectedCard');
     const [playerPosition, setPlayerPosition] = useState(0); // Pradinė žaidėjo kortelės pozicija
@@ -39,6 +41,7 @@ const GameBoard = (props) => {
                 return null;
         }
     };
+    console.log("Gauta kauliuko reikšmė:", diceValue)
 
     const handleDiceRollFinish = (diceValue) => {
         // Atnaujinam žaidėjo kortelės poziciją naudodami naują funkciją

@@ -17,6 +17,7 @@ const CardMover = ({ selectedCard, currentPosition, diceValue, onCardMove, rende
         onCardMove(newPosition);
     };
 
+
     return (
         <div>
             <div className={`card ${selectedCard}`} style={{ width: '70px', height: '50px', borderRadius: '25%' }}>
