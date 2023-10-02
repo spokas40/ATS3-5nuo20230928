@@ -41,9 +41,9 @@ const GameBoard = (props) => {
                 return null;
         }
     };
-    console.log("Gauta kauliuko reikšmė:", diceValue)
 
     const handleDiceRollFinish = (diceValue) => {
+        console.log("Gauta kauliuko reikšmė:", diceValue )
         // Atnaujinam žaidėjo kortelės poziciją naudodami naują funkciją
         const newPosition = calculateNewPosition(playerPosition, diceValue);
         setPlayerPosition(newPosition);
