@@ -46,18 +46,17 @@ const DiceRoller = ({ onFinish }) => {
 
         // Panaudojame 'setTimeout', kad sukurtume animacijos vėlavimą
         const animationTimeout = setTimeout(() => {
-            // const randomNumber = getRandomDiceValue(); // funkciją gauti atsitiktinį skaičių
-            const randomNumber = 3
+            const randomNumber = getRandomDiceValue(); // funkciją gauti atsitiktinį skaičių
+            // const randomNumber = 3
             setDiceValue(randomNumber);
             setRolling(false);
             console.log("DiceRoller sugeneravo reikšmę:", randomNumber);
-            // onFinish(randomNumber); // Po animacijos kviečiama onFinish su reikšme
-            onFinish(3); // hardcodinta reikšmė
+            onFinish(randomNumber); // Po animacijos kviečiama onFinish su reikšme
+            // onFinish(3); // hardcodinta reikšmė
         }, 1500); // 1,5 sekundės animacija
 
         return () => clearTimeout(animationTimeout);
     }, [rolling, onFinish]);
-    console.log("kauliuk reikšmė:", diceValue)
 
     // Pridedame funkciją 'rollDice', kuri nustato 'rolling' būseną į 'true', kai mygtukas paspaudžiamas
     const rollDice = () => {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 
 export const calculateNewPosition = (currentPosition, diceValue) => {
     let newPosition = currentPosition + diceValue;
@@ -13,7 +13,7 @@ export const calculateNewPosition = (currentPosition, diceValue) => {
 const CardMover = ({ selectedCard, currentPosition, diceValue, onCardMove, renderSelectedCardImage }) => {
     const handleMoveCard = () => {
         const newPosition = calculateNewPosition(currentPosition, diceValue);
-        console.log("Nauja padėtis", newPosition)
+        console.log("Nauja kortelės padėtis", newPosition)
         onCardMove(newPosition);
     };
 

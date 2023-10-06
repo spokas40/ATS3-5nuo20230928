@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import '../styles/styles.css';
 import DiceRoller from './DiceRoller.js';
 import CardMover from './CardMover.js';
@@ -9,8 +9,8 @@ import elephantImage from '../images/elephant-on-a-ball.png';
 import carriageImage from '../images/carriage.png';
 import ballonImage from '../images/ballon.png';
 import { calculateNewPosition } from './CardMover.js';
+import login from "./Login.js";
 
-console.log("Gauta kauliuko reikšmė: ")
 
 const GameBoard = (props) => {
     const selectedCard = localStorage.getItem('selectedCard');
@@ -43,10 +43,32 @@ const GameBoard = (props) => {
     };
 
     const handleDiceRollFinish = (diceValue) => {
-        console.log("Gauta kauliuko reikšmė:", diceValue )
         // Atnaujinam žaidėjo kortelės poziciją naudodami naują funkciją
         const newPosition = calculateNewPosition(playerPosition, diceValue);
+        moveCardToNewPosition(newPosition);
+    };
+
+    const moveCardToNewPosition = (newPosition) => {
         setPlayerPosition(newPosition);
+
+        const gameBoardElement = document.querySelector(`[data-value="${newPosition}"]`);
+
+        // Sukuriame naują div elementą, kuriame yra CardMover komponentas
+        const cardMoverContainer = document.createElement("div");
+        ReactDOM.render(
+            <CardMover
+                selectedCard={selectedCard}
+                diceValue={diceValue}
+                currentPosition={newPosition}
+                onCardMove={moveCardToNewPosition}
+                renderSelectedCardImage={renderSelectedCardImage}
+            />,
+            cardMoverContainer
+        );
+
+        // Išvalome senąjį turinį žaidimo lentoje ir įterpiame naują kortelės turinį
+        gameBoardElement.innerHTML = '';
+        gameBoardElement.appendChild(cardMoverContainer);
     };
 
     return (
@@ -66,13 +88,6 @@ const GameBoard = (props) => {
                     {/* 2nd row */}
                     <div className="cell cell-with-border" data-value="18"></div>
                     <div className="cell" data-value="0">
-                        <CardMover
-                            selectedCard={selectedCard}
-                            diceValue={diceValue}
-                            currentPosition={playerPosition}
-                            onCardMove={(newPosition) => setPlayerPosition(newPosition)}
-                            renderSelectedCardImage={renderSelectedCardImage}
-                        />
                     </div>
                     <div className="cell"></div>
                     <div className="cell"></div>
