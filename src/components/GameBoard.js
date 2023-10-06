@@ -51,6 +51,11 @@ const GameBoard = (props) => {
     const moveCardToNewPosition = (newPosition) => {
         setPlayerPosition(newPosition);
 
+        const oldPositionElement = document.querySelector(`[data-value="${playerPosition}"]`);
+        if (oldPositionElement) {
+            oldPositionElement.innerHTML = '';
+        }
+
         const gameBoardElement = document.querySelector(`[data-value="${newPosition}"]`);
 
         // Sukuriame naują div elementą, kuriame yra CardMover komponentas
