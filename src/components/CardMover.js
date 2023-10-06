@@ -23,7 +23,6 @@ const CardMover = ({ selectedCard, currentPosition, diceValue, onCardMove, rende
             <div className={`card ${selectedCard}`} style={{ width: '70px', height: '50px', borderRadius: '25%' }}>
                 {selectedCard && renderSelectedCardImage(selectedCard)}
             </div>
-            <button onClick={handleMoveCard}>Move Card</button>
         </div>
     );
 };

@@ -10,6 +10,7 @@ import carriageImage from '../images/carriage.png';
 import ballonImage from '../images/ballon.png';
 import { calculateNewPosition } from './CardMover.js';
 import login from "./Login.js";
+import PlayerWallet from "./PlayerWallet.js";
 
 
 const GameBoard = (props) => {
@@ -94,7 +95,9 @@ const GameBoard = (props) => {
                     <div className="cell cell-with-border" data-value="18"></div>
                     <div className="cell" data-value="0">
                     </div>
-                    <div className="cell"></div>
+                    <div className="cell" data-value="101">
+                        <PlayerWallet />
+                    </div>
                     <div className="cell"></div>
                     <div className="cell"></div>
                     <div className="cell"></div>
