@@ -12,8 +12,8 @@ import { calculateNewPosition } from './CardMover.js';
 import login from "./Login.js";
 import PlayerWallet from "./PlayerWallet.js";
 
-
 const GameBoard = (props) => {
+    const [balance, setBalance] = useState(100);
     const selectedCard = localStorage.getItem('selectedCard');
     const [playerPosition, setPlayerPosition] = useState(0); // Pradinė žaidėjo kortelės pozicija
     const [diceValue, setDiceValue] = useState(0);
@@ -44,12 +44,21 @@ const GameBoard = (props) => {
     };
 
     const handleDiceRollFinish = (diceValue) => {
-        // Atnaujinam žaidėjo kortelės poziciją naudodami naują funkciją
-        const newPosition = calculateNewPosition(playerPosition, diceValue);
+        const result = calculateNewPosition(playerPosition, diceValue);
+        const newPosition = result.position;
+
+        if (result.passedGo) {
+            setBalance(prevBalance => prevBalance + 50); // Pridedame 50 Travelon'ų
+        }
+
         moveCardToNewPosition(newPosition);
     };
 
+
     const moveCardToNewPosition = (newPosition) => {
+        if (newPosition === 18 && playerPosition < 18) {
+            setBalance(prevBalance => prevBalance + 50); // Pridedame 50 Travelon'ų kai žaidėjas baigia ratą
+        }
         setPlayerPosition(newPosition);
 
         const oldPositionElement = document.querySelector(`[data-value="${playerPosition}"]`);
@@ -96,7 +105,7 @@ const GameBoard = (props) => {
                     <div className="cell" data-value="0">
                     </div>
                     <div className="cell" data-value="101">
-                        <PlayerWallet />
+                        <PlayerWallet balance={balance} />
                     </div>
                     <div className="cell"></div>
                     <div className="cell"></div>

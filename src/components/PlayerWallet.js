@@ -1,14 +1,8 @@
-import React, {useState} from "react";
+import React from "react";
 
-function PlayerWallet() {
-    const [balance, setBalance] = useState(100); // pradinis pinigų kiekis
-    // pinigų kiekio padidinimo funkcija:
-    const addTravelon = (amount) => {
-        setBalance(prevBalance => prevBalance + amount);
-    }
-
+function PlayerWallet({ balance }) {
     return (
-        <div className="plaerWallet">
+        <div className="playerWallet">
             In the Wallet: {balance} Travelons
         </div>
     );
