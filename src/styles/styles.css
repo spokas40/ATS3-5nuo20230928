@@ -72,3 +72,18 @@
         transform: rotate(360deg);
     }
 }
+.rialWayStation {
+    background-image: url('../images/railWayStation.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.bankBuild {
+    background-image: url("../images/bankBuild.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.seaPort {
+    background-image: url("../images/seaPort.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}

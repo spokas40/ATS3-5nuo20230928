@@ -11,6 +11,7 @@ import ballonImage from '../images/ballon.png';
 import { calculateNewPosition } from './CardMover.js';
 import login from "./Login.js";
 import PlayerWallet from "./PlayerWallet.js";
+import TravelLandBank from './TravelLandBank.js'
 
 const GameBoard = (props) => {
     const [balance, setBalance] = useState(100);
@@ -92,17 +93,18 @@ const GameBoard = (props) => {
             <div className="game-board">
                 <div className="grid">
                     {/* 1st row */}
-                    <div className="cell cell-with-border" data-value="1"></div>
-                    <div className="cell cell-with-border" data-value="2"></div>
-                    <div className="cell cell-with-border" data-value="3"></div>
+                    <div className="cell cell-with-border" data-value="1">                                       </div>
+                    <div className="cell cell-with-border seaPort" data-value="2"></div>
+                    <div className="cell cell-with-border rialWayStation" data-value="3"></div>
                     <div className="cell cell-with-border" data-value="4"></div>
                     <div className="cell cell-with-border" data-value="5"></div>
                     <div className="cell cell-with-border" data-value="6"></div>
                     <div className="cell cell-with-border" data-value="7"></div>
 
                     {/* 2nd row */}
-                    <div className="cell cell-with-border" data-value="18"></div>
-                    <div className="cell" data-value="0">
+                    <div className="cell cell-with-border bankBuild" data-value="18"></div>
+                    <div className="cell" data-value="100">
+                        <TravelLandBank />
                     </div>
                     <div className="cell" data-value="101">
                         <PlayerWallet balance={balance} />
@@ -114,7 +116,7 @@ const GameBoard = (props) => {
 
                     {/* 3rd row */}
                     <div className="cell cell-with-border" data-value="17"></div>
-                    <div className="cell"></div>
+                    <div className="cell" data-value="0"></div>
                     <div className="cell">
                         <div className="cell dice-cell">
                             <DiceRoller onFinish={handleDiceRollFinish} diceValue={diceValue} />
@@ -130,9 +132,9 @@ const GameBoard = (props) => {
                     <div className="cell cell-with-border" data-value="16"></div>
                     <div className="cell cell-with-border" data-value="15"></div>
                     <div className="cell cell-with-border" data-value="14"></div>
-                    <div className="cell cell-with-border" data-value="13"></div>
+                    <div className="cell cell-with-border seaPort" data-value="13"></div>
                     <div className="cell cell-with-border" data-value="12"></div>
-                    <div className="cell cell-with-border" data-value="11"></div>
+                    <div className="cell cell-with-border rialWayStation" data-value="11"></div>
                     <div className="cell cell-with-border" data-value="10"></div>
                 </div>
             </div>
