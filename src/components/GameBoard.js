@@ -13,11 +13,25 @@ import login from "./Login.js";
 import PlayerWallet from "./PlayerWallet.js";
 import TravelLandBank from './TravelLandBank.js'
 
-const GameBoard = (props) => {
-    const [balance, setBalance] = useState(100);
+const GameBoard = ({ deductFromWallet, depositToBank }) => {
+    const [playerBalance, setPlayerBalance] = useState(100);
+    const [bankBalance, setBankBalance] = useState(0);
     const selectedCard = localStorage.getItem('selectedCard');
     const [playerPosition, setPlayerPosition] = useState(0); // Pradinė žaidėjo kortelės pozicija
     const [diceValue, setDiceValue] = useState(0);
+
+    function deductFromWallet (amount) {
+        setPlayerBalance(prevBalance => prevBalance - amount);
+    }
+
+    function addToWallet(amount) {
+        setPlayerBalance(prevBalance => prevBalance + amount);
+    }
+
+
+    function depositToBank (amount) {
+        setBankBalance(prevBalance => prevBalance + amount)
+    }
 
     const handleBackToHome = () => {
         localStorage.removeItem('selectedCard');
@@ -49,16 +63,39 @@ const GameBoard = (props) => {
         const newPosition = result.position;
 
         if (result.passedGo) {
-            setBalance(prevBalance => prevBalance + 50); // Pridedame 50 Travelon'ų
+            addToWallet(50); // Pridedame 50 Travelon'ų
         }
 
         moveCardToNewPosition(newPosition);
     };
 
+    function handleCardLanding(cellValue) {
+        switch (cellValue) {
+            case "2":
+            case "13":
+                // Jūrų uostas
+                deductFromWallet(2);
+                depositToBank(2);
+                break;
+
+            case "3":
+            case "11":
+                // Geležinkelio stotis
+                deductFromWallet(3);
+                depositToBank(3);
+                break;
+
+            // Čia bus pridedamos kitos sąlygos atitinkančios kitus žaidimo lentos langelius ir jų taisykles.
+            default:
+                break;
+        }
+    }
+
 
     const moveCardToNewPosition = (newPosition) => {
+        handleCardLanding(newPosition.toString());
         if (newPosition === 18 && playerPosition < 18) {
-            setBalance(prevBalance => prevBalance + 50); // Pridedame 50 Travelon'ų kai žaidėjas baigia ratą
+            addToWallet(50); // Pridedame 50 Travelon'ų kai žaidėjas baigia ratą
         }
         setPlayerPosition(newPosition);
 
@@ -104,10 +141,10 @@ const GameBoard = (props) => {
                     {/* 2nd row */}
                     <div className="cell cell-with-border bankBuild" data-value="18"></div>
                     <div className="cell" data-value="100">
-                        <TravelLandBank />
+                        <TravelLandBank balance={bankBalance} depositToBank={depositToBank} />
                     </div>
                     <div className="cell" data-value="101">
-                        <PlayerWallet balance={balance} />
+                        <PlayerWallet balance={playerBalance} deductFromWallet={deductFromWallet} addToWallet={addToWallet} />
                     </div>
                     <div className="cell"></div>
                     <div className="cell"></div>

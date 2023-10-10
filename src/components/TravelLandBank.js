@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 
-function TravelLandBank() {
+function TravelLandBank({ balance, depositToBank }) {
     const [bankBalance, setBankBalance] = useState(0); // pradinis banko balansas
+    function depositToBank(amount) {
+        setBankBalance(prevBalance => prevBalance + amount);
+    }
 
     // Funkcija skirta pridėti Travelonus į banką
     const addToBank = (amount) => {
@@ -10,7 +13,7 @@ function TravelLandBank() {
 
     return (
         <div className="travelLandBank">
-            TravelLand Bank: {bankBalance} Travelons
+            TravelLand Bank: {balance} Travelons
         </div>
     );
 }
