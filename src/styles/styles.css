@@ -30,6 +30,7 @@
 }
 .cardsPicture {
     height: 140px;
+    background-color: yellow;
 }
 .gameBoardsImg {
     width: 50px;

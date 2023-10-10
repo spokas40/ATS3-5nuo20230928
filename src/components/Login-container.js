@@ -32,7 +32,7 @@ const LoginContainer = () => {
             ) : (
                 <React.Fragment>
             <h2>Welcome to our game!</h2>
-            <h1>"Busnes Way"</h1>
+            <h1>"Business Way"</h1>
             <p>Please choose one of the four playing cards:</p>
             <div className="card-row">
                 <div className={`card ${selectedCard === "hors" ? "selected" : ""}`} onClick={() => handleCardClick("hors")}>
