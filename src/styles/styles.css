@@ -87,3 +87,18 @@
     background-size: cover;
     background-repeat: no-repeat;
 }
+.hotel {
+    background-image: url("../images/hotel.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.government {
+    background-image: url("../images/government.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.warehause {
+    background-image: url("../images/warehause.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}

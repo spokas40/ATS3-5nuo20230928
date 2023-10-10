@@ -73,14 +73,26 @@ const GameBoard = ({ deductFromWallet, depositToBank }) => {
         switch (cellValue) {
             case "2":
             case "13":
-                // Jūrų uostas
+                // Seaport
                 deductFromWallet(2);
                 depositToBank(2);
                 break;
 
+            case "4":
+                // Seaport
+                deductFromWallet(20);
+                depositToBank(20);
+                break;
+
+            case "10":
+                // Seaport
+                deductFromWallet(10);
+                depositToBank(10);
+                break;
+
             case "3":
             case "11":
-                // Geležinkelio stotis
+                // Railway Station
                 deductFromWallet(3);
                 depositToBank(3);
                 break;
@@ -130,10 +142,10 @@ const GameBoard = ({ deductFromWallet, depositToBank }) => {
             <div className="game-board">
                 <div className="grid">
                     {/* 1st row */}
-                    <div className="cell cell-with-border" data-value="1">                                       </div>
+                    <div className="cell cell-with-border government" data-value="1">                                       </div>
                     <div className="cell cell-with-border seaPort" data-value="2"></div>
                     <div className="cell cell-with-border rialWayStation" data-value="3"></div>
-                    <div className="cell cell-with-border" data-value="4"></div>
+                    <div className="cell cell-with-border warehause" data-value="4"></div>
                     <div className="cell cell-with-border" data-value="5"></div>
                     <div className="cell cell-with-border" data-value="6"></div>
                     <div className="cell cell-with-border" data-value="7"></div>
@@ -172,7 +184,7 @@ const GameBoard = ({ deductFromWallet, depositToBank }) => {
                     <div className="cell cell-with-border seaPort" data-value="13"></div>
                     <div className="cell cell-with-border" data-value="12"></div>
                     <div className="cell cell-with-border rialWayStation" data-value="11"></div>
-                    <div className="cell cell-with-border" data-value="10"></div>
+                    <div className="cell cell-with-border hotel" data-value="10"></div>
                 </div>
             </div>
             <button className="backToHome" onClick={handleBackToHome}>Back to Home</button>
