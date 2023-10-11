@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import '../styles/styles.css';
 import DiceRoller from './DiceRoller.js';
 import CardMover from './CardMover.js';
@@ -139,7 +139,7 @@ const GameBoard = ({ deductFromWallet, depositToBank }) => {
 
         // Sukuriame naują div elementą, kuriame yra CardMover komponentas
         const cardMoverContainer = document.createElement("div");
-        ReactDOM.render(
+        createRoot(cardMoverContainer).render(
             <CardMover
                 selectedCard={selectedCard}
                 diceValue={diceValue}
@@ -147,7 +147,6 @@ const GameBoard = ({ deductFromWallet, depositToBank }) => {
                 onCardMove={moveCardToNewPosition}
                 renderSelectedCardImage={renderSelectedCardImage}
             />,
-            cardMoverContainer
         );
 
         // Išvalome senąjį turinį žaidimo lentoje ir įterpiame naują kortelės turinį
