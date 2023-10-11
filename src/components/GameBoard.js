@@ -4,6 +4,7 @@ import '../styles/styles.css';
 import DiceRoller from './DiceRoller.js';
 import CardMover from './CardMover.js';
 import LoginContainer from './Login-container.js';
+import BusinessBoard from './BusinessBoard.js';
 import horseImage from '../images/horse.png';
 import elephantImage from '../images/elephant-on-a-ball.png';
 import carriageImage from '../images/carriage.png';
@@ -84,10 +85,22 @@ const GameBoard = ({ deductFromWallet, depositToBank }) => {
                 depositToBank(20);
                 break;
 
-            case "10":
+            case "5":
                 // Seaport
                 deductFromWallet(10);
                 depositToBank(10);
+                break;
+
+            case "10":
+                // Hotel
+                deductFromWallet(10);
+                depositToBank(10);
+                break;
+
+            case "12":
+                // Hotel
+                deductFromWallet(20);
+                depositToBank(20);
                 break;
 
             case "3":
@@ -95,6 +108,12 @@ const GameBoard = ({ deductFromWallet, depositToBank }) => {
                 // Railway Station
                 deductFromWallet(3);
                 depositToBank(3);
+                break;
+
+            case "15":
+                // Railway Station
+                deductFromWallet(20);
+                depositToBank(20);
                 break;
 
             // Čia bus pridedamos kitos sąlygos atitinkančios kitus žaidimo lentos langelius ir jų taisykles.
@@ -146,7 +165,7 @@ const GameBoard = ({ deductFromWallet, depositToBank }) => {
                     <div className="cell cell-with-border seaPort" data-value="2"></div>
                     <div className="cell cell-with-border rialWayStation" data-value="3"></div>
                     <div className="cell cell-with-border warehause" data-value="4"></div>
-                    <div className="cell cell-with-border" data-value="5"></div>
+                    <div className="cell cell-with-border campingEquipment" data-value="5"></div>
                     <div className="cell cell-with-border" data-value="6"></div>
                     <div className="cell cell-with-border" data-value="7"></div>
 
@@ -158,7 +177,9 @@ const GameBoard = ({ deductFromWallet, depositToBank }) => {
                     <div className="cell" data-value="101">
                         <PlayerWallet balance={playerBalance} deductFromWallet={deductFromWallet} addToWallet={addToWallet} />
                     </div>
-                    <div className="cell"></div>
+                    <div className="cell" data-value="102">
+                        <BusinessBoard playerBalance={playerBalance} deductFromWallet={deductFromWallet} depositToBank={depositToBank} />
+                    </div>
                     <div className="cell"></div>
                     <div className="cell"></div>
                     <div className="cell cell-with-border" data-value="8"></div>
@@ -179,10 +200,10 @@ const GameBoard = ({ deductFromWallet, depositToBank }) => {
 
                     {/* 4th row */}
                     <div className="cell cell-with-border" data-value="16"></div>
-                    <div className="cell cell-with-border" data-value="15"></div>
+                    <div className="cell cell-with-border repairWorkshop" data-value="15"></div>
                     <div className="cell cell-with-border" data-value="14"></div>
                     <div className="cell cell-with-border seaPort" data-value="13"></div>
-                    <div className="cell cell-with-border" data-value="12"></div>
+                    <div className="cell cell-with-border arab-bazar" data-value="12"></div>
                     <div className="cell cell-with-border rialWayStation" data-value="11"></div>
                     <div className="cell cell-with-border hotel" data-value="10"></div>
                 </div>

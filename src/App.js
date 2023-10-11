@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Login from './components/Login.js';
 import GameBoard from './components/GameBoard.js';
-import './App.css'; // importuojate stilių
+import './App.css'; // importuojame stilių
 
 const App = () => {
     const [gameStarted, setGameStarted] = useState(false);

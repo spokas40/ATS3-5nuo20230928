@@ -103,3 +103,18 @@
     background-size: cover;
     background-repeat: no-repeat;
 }
+.repairWorkshop {
+    background-image: url("../images/repair workshop.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.arab-bazar {
+    background-image: url("../images/arab-bazar.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.campingEquipment {
+    background-image: url("../images/campingEquipment.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
