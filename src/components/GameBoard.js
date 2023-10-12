@@ -20,6 +20,7 @@ const GameBoard = ({ deductFromWallet, depositToBank }) => {
     const selectedCard = localStorage.getItem('selectedCard');
     const [playerPosition, setPlayerPosition] = useState(0); // Pradinė žaidėjo kortelės pozicija
     const [diceValue, setDiceValue] = useState(0);
+    const [ownedBusinesses, setOwnedBusinesses] = useState([]);
 
     function deductFromWallet (amount) {
         setPlayerBalance(prevBalance => prevBalance - amount);
@@ -80,13 +81,25 @@ const GameBoard = ({ deductFromWallet, depositToBank }) => {
                 break;
 
             case "4":
-                // Seaport
+                // Warehouse
                 deductFromWallet(20);
                 depositToBank(20);
                 break;
 
             case "5":
-                // Seaport
+                // campingEquipment
+                deductFromWallet(10);
+                depositToBank(10);
+                break;
+
+            case "7":
+                // museumOfHistory
+                deductFromWallet(5);
+                depositToBank(5);
+                break;
+
+            case "9":
+                // Goldmine
                 deductFromWallet(10);
                 depositToBank(10);
                 break;
@@ -98,7 +111,7 @@ const GameBoard = ({ deductFromWallet, depositToBank }) => {
                 break;
 
             case "12":
-                // Hotel
+                // arabBazar
                 deductFromWallet(20);
                 depositToBank(20);
                 break;
@@ -111,9 +124,15 @@ const GameBoard = ({ deductFromWallet, depositToBank }) => {
                 break;
 
             case "15":
-                // Railway Station
+                // remoteWorkshop
                 deductFromWallet(20);
                 depositToBank(20);
+                break;
+
+            case "17":
+                // Metallurgy
+                deductFromWallet(5);
+                depositToBank(5);
                 break;
 
             // Čia bus pridedamos kitos sąlygos atitinkančios kitus žaidimo lentos langelius ir jų taisykles.
@@ -166,7 +185,7 @@ const GameBoard = ({ deductFromWallet, depositToBank }) => {
                     <div className="cell cell-with-border warehause" data-value="4"></div>
                     <div className="cell cell-with-border campingEquipment" data-value="5"></div>
                     <div className="cell cell-with-border" data-value="6"></div>
-                    <div className="cell cell-with-border" data-value="7"></div>
+                    <div className="cell cell-with-border museumOfHistory" data-value="7"></div>
 
                     {/* 2nd row */}
                     <div className="cell cell-with-border bankBuild" data-value="18"></div>
@@ -184,7 +203,7 @@ const GameBoard = ({ deductFromWallet, depositToBank }) => {
                     <div className="cell cell-with-border" data-value="8"></div>
 
                     {/* 3rd row */}
-                    <div className="cell cell-with-border" data-value="17"></div>
+                    <div className="cell cell-with-border metalurgy" data-value="17"></div>
                     <div className="cell" data-value="0"></div>
                     <div className="cell">
                         <div className="cell dice-cell">
@@ -195,7 +214,7 @@ const GameBoard = ({ deductFromWallet, depositToBank }) => {
                     </div>
                     <div className="cell"></div>
                     <div className="cell"></div>
-                    <div className="cell cell-with-border" data-value="9"></div>
+                    <div className="cell cell-with-border goldmine" data-value="9"></div>
 
                     {/* 4th row */}
                     <div className="cell cell-with-border" data-value="16"></div>

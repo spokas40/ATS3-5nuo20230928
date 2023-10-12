@@ -118,3 +118,18 @@
     background-size: cover;
     background-repeat: no-repeat;
 }
+.goldmine {
+    background-image: url("../images/goldmine.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.metalurgy {
+    background-image: url("../images/metalurgy.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.museumOfHistory {
+    background-image: url("../images/museumOfHistory.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
