@@ -50,7 +50,6 @@ const DiceRoller = ({ onFinish }) => {
             // const randomNumber = 3
             setDiceValue(randomNumber);
             setRolling(false);
-            console.log("DiceRoller sugeneravo reikšmę:", randomNumber);
             onFinish(randomNumber); // Po animacijos kviečiama onFinish su reikšme
             // onFinish(3); // hardcodinta reikšmė
         }, 1500); // 1,5 sekundės animacija

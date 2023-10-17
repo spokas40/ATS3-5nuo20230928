@@ -13,27 +13,27 @@ import { calculateNewPosition } from './CardMover.js';
 import login from "./Login.js";
 import PlayerWallet from "./PlayerWallet.js";
 import TravelLandBank from './TravelLandBank.js'
+import { useWallet} from "./PlayerWallet.js";
+import { deductFromWallet } from "./PlayerWallet.js";
 
-const GameBoard = ({ deductFromWallet, depositToBank }) => {
+const GameBoard = ({ deductAmountFromWallet, depositToBank }) => {
     const [playerBalance, setPlayerBalance] = useState(100);
     const [bankBalance, setBankBalance] = useState(0);
     const selectedCard = localStorage.getItem('selectedCard');
-    const [playerPosition, setPlayerPosition] = useState(0); // Pradinė žaidėjo kortelės pozicija
+    const [playerPosition, setPlayerPosition] = useState(0); // Initial player card position
     const [diceValue, setDiceValue] = useState(0);
     const [ownedBusinesses, setOwnedBusinesses] = useState([]);
+    const [currentBusiness, setCurrentBusiness] = useState(null);
+    const { balance, deductFromWallet } = useWallet()
 
-    function deductFromWallet (amount) {
-        setPlayerBalance(prevBalance => prevBalance - amount);
-    }
+    const handleBalanceChange = (newBalance) => {
+        setPlayerBalance(newBalance);
+    };
 
     function addToWallet(amount) {
         setPlayerBalance(prevBalance => prevBalance + amount);
     }
 
-
-    function depositToBank (amount) {
-        setBankBalance(prevBalance => prevBalance + amount)
-    }
 
     const handleBackToHome = () => {
         localStorage.removeItem('selectedCard');
@@ -72,18 +72,21 @@ const GameBoard = ({ deductFromWallet, depositToBank }) => {
     };
 
     function handleCardLanding(cellValue) {
+        let businessType = null;
         switch (cellValue) {
             case "2":
             case "13":
                 // Seaport
                 deductFromWallet(2);
                 depositToBank(2);
+                businessType = 'Seaport';
                 break;
 
             case "4":
                 // Warehouse
                 deductFromWallet(20);
                 depositToBank(20);
+                businessType = 'Warehouse';
                 break;
 
             case "5":
@@ -121,6 +124,7 @@ const GameBoard = ({ deductFromWallet, depositToBank }) => {
                 // Railway Station
                 deductFromWallet(3);
                 depositToBank(3);
+                businessType = 'Railway';
                 break;
 
             case "15":
@@ -179,10 +183,10 @@ const GameBoard = ({ deductFromWallet, depositToBank }) => {
             <div className="game-board">
                 <div className="grid">
                     {/* 1st row */}
-                    <div className="cell cell-with-border government" data-value="1">                                       </div>
+                    <div className="cell cell-with-border government" data-value="1"></div>
                     <div className="cell cell-with-border seaPort" data-value="2"></div>
                     <div className="cell cell-with-border rialWayStation" data-value="3"></div>
-                    <div className="cell cell-with-border warehause" data-value="4"></div>
+                    <div className="cell cell-with-border warehouse" data-value="4"></div>
                     <div className="cell cell-with-border campingEquipment" data-value="5"></div>
                     <div className="cell cell-with-border" data-value="6"></div>
                     <div className="cell cell-with-border museumOfHistory" data-value="7"></div>
@@ -193,10 +197,16 @@ const GameBoard = ({ deductFromWallet, depositToBank }) => {
                         <TravelLandBank balance={bankBalance} depositToBank={depositToBank} />
                     </div>
                     <div className="cell" data-value="101">
-                        <PlayerWallet balance={playerBalance} deductFromWallet={deductFromWallet} addToWallet={addToWallet} />
+                        <PlayerWallet balance={balance} onBalabceChange={handleBalanceChange}>
+                        </PlayerWallet>
                     </div>
                     <div className="cell" data-value="102">
-                        <BusinessBoard playerBalance={playerBalance} deductFromWallet={deductFromWallet} depositToBank={depositToBank} />
+                        <BusinessBoard
+                            playerBalance={playerBalance}
+                            deductFromWallet={deductFromWallet}
+                            depositToBank={depositToBank}
+                            businessType={currentBusiness}
+                        />
                     </div>
                     <div className="cell"></div>
                     <div className="cell"></div>
