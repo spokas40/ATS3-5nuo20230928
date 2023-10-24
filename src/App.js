@@ -19,9 +19,10 @@ const App = () => {
                 {!gameStarted ? (
                     <Login onStartGame={() => setGameStarted(true)} />
                 ) : (
-                    <PlayerWallet balance={playerBalance} onBalanceChange={handleBalanceChange}>
+                    <>
+                    < PlayerWallet balance={playerBalance} onBalanceChange={handleBalanceChange} />
                         <GameBoard />
-                    </PlayerWallet>
+                    </>
                 )}
             </div>
         </WalletProvider>
